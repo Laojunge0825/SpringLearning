@@ -9,6 +9,7 @@ package com.yc.aspect;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
@@ -19,6 +20,7 @@ import java.util.Date;
  */
 @Aspect //切面类  你要曾强的功能写到这里
 @Component  //IOC注解 让其实现Spring的托管功能
+@Order(value=100)
 public class LogAspect {
     //切入点的声明
     @Pointcut("execution(* com.yc.biz.StudentBizImpl.add*(..))")//切入点表达式  在哪些方法上增强

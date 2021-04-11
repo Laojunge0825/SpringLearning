@@ -13,6 +13,8 @@
         <module>2_caltools</module>
         <module>MySpring</module>
         <module>AOP</module>
+        <module>selfaop_jdkproxy</module>
+        <module>selfaop_CGLIBproxy</module>
     </modules>
 
     <properties>

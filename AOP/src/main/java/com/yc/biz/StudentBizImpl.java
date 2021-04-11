@@ -22,9 +22,10 @@ public class StudentBizImpl implements StudentBiz{
     public StudentBizImpl() {
     }
 
-    @Autowired //org.springframework
+    @Autowired //org.springframework   只按类型注入  多歌同类型则需要@Qualifier()来约定注入的beanid
    @Qualifier("studentDaoJpaImpl")
   //  @Resource(name = "studentDaoJpaImpl")  //如果有多个对象可以注入  必须要用@Named("")  如果只有一个对象则不需要
+    //如果没有找到同名的bean  则按类型查找
     public void setStudentDao(StudentDao studentDao) {
         this.studentDao = studentDao;
     }
