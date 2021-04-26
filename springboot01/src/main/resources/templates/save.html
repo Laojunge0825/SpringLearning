@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>开户</title>
+</head>
+<body>
+<div id="save">
+<input type="text" placeholder="请输入开户金额" v-model="money"/>
+<input type="button" @click="save()" value="确认" />
+<a href="save" >确认</a>
+</div >
+<script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+<script type="text/javascript "  src="js/vue.js"></script>
+<script type="text/javascript">
+
+
+    var vm = new Vue({
+        el: '#save',
+        data: {
+            money: '',
+
+        },
+        mounted:function(){
+                alert("bbbbbb");
+        },
+        methods: {
+            save:function(){
+                alert("aaa");
+                $.get("save", { money:"5" },
+                    function(data){
+                        alert("Data Loaded: " + data);
+                    });
+            },
+
+
+
+
+        }
+    });
+</script>
+</body>
+
+</html>

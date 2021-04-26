@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>开户</title>
+</head>
+<body>
+
+<div id="save">
+
+        账户id： <input type="text" v-model="accountid"/>
+        金额：<input type="text" v-model="money" />
+        入账id：<input  type="text" v-model ="transferid"/>
+        <input type="button" value="存款" @click="Deposite()"/>
+        <input type="button" value="取款" @click="Withdraw()"/>
+        <input type="button" value="转账" @click="Transfer()"/>
+        <input type="button" value="开户" @click="OpenA()"/>
+        <input type="button" value="查询" @click="findAll()"/>
+
+ <table id="a">
+
+    <tr><td>账户id</td> <td>余额</td> </tr>
+    <tr v-for="id in ids" ><td >{{id.accountId}}</td> <td >{{id.balance}}</td></tr>
+
+
+ </table>
+
+</div >
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript "  src="js/vue.js"></script>
+<script type="text/javascript">
+
+
+    var vm = new Vue({
+        el: '#save',
+        data: {
+            ids:[],
+
+            accountid:'',
+            money: '',
+            transferid:'',
+            optype:''
+
+
+        },
+        mounted:function(){
+
+
+        },
+        methods: {
+            Deposite:function(){
+                $.get("/deposite", { accountid:this.accountid,optype:"deposite",money:this.money,transferid: " " },
+                    function(data){
+                        if(data!=null){
+
+                            alert("存款成功");
+                        }else {
+                            alert("存款失败");
+                        }
+                        window.location.reload();
+                    });
+            },
+            Withdraw:function(){
+                $.get("/withdraw", {  accountid:this.accountid,optype:"withdraw",money:this.money,transferid: " "  },
+                    function(data){
+                        if(data!=null){
+                            alert("取款成功");
+                        }else {
+                            alert("取款失败");
+                        }
+                        window.location.reload();
+                    });
+            },
+            Transfer:function(){
+                $.get("/transfer", { accountid:this.accountid,transferid:this.transferid ,money:this.money},
+                    function(data){
+                        if(data!=null){
+                            alert("转账成功");
+                        }else {
+                            alert("转账失败");
+                        }
+                        window.location.reload();
+                    });
+            },
+            OpenA:function(){
+                $.get("/open", { accountid:this.accountid,money:this.money},
+                    function(data){
+                        if(data!=null){
+                            alert("开户成功");
+                        }else {
+                            alert("开户失败");
+                        }
+                        window.location.reload();
+                    });
+            },
+            findAll:function(){
+                var that = this;
+                $.get("/findAll",{ },function (data){
+
+                    that.ids=data;
+                    // 或者将that.ids 改成 vm.ids
+
+
+                });
+            }
+
+
+
+
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -15,6 +15,7 @@
         <module>AOP</module>
         <module>selfaop_jdkproxy</module>
         <module>selfaop_CGLIBproxy</module>
+        <module>Tx</module>
     </modules>
 
     <properties>
@@ -39,6 +40,7 @@
                 <version>${spring.version}</version>
                 <type>pom</type>   <!--依赖描述包  -->
             </dependency>
+
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
@@ -48,6 +50,12 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test</artifactId>
+                <version>${spring.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
                 <version>${spring.version}</version>
                 <scope>provided</scope>
             </dependency>
